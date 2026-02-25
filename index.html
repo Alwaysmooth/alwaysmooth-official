@@ -1,94 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Always Smooth</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f3;
-    color: #2f3e34;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Always Smooth - Premium Tissue Solutions</title>
+    <style>
+        /* 全局样式重置与基础设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
 
-header {
-    background-color: #e8ede7;
-    padding: 60px 20px;
-    text-align: center;
-}
+        body {
+            color: #2c3e50;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-p {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 0 auto 20px;
-    line-height: 1.6;
-}
+        /* 导航栏 */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-button {
-    padding: 12px 25px;
-    background-color: #4f6f5a;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-button:hover {
-    background-color: #3e5a47;
-}
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2a9d8f;
+            text-decoration: none;
+        }
 
-.section {
-    padding: 60px 20px;
-    text-align: center;
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-.value-box {
-    max-width: 800px;
-    margin: auto;
-}
-</style>
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2a9d8f;
+        }
+
+        /* 英雄区 - 突出企业形象 */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fffe 0%, #e8f4f3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: #2a9d8f;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 30px;
+            color: #586e75;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(42, 157, 143, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #21867a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(42, 157, 143, 0.3);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 产品轮播区 - 右侧箭头切换 */
+        .product-carousel {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #586e75;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 轮播容器 */
+        .carousel-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card {
+            min-width: 100%;
+            padding: 0 20px;
+        }
+
+        .product-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: #f8fffe;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        }
+
+        .product-image {
+            flex: 1;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-category {
+            color: #2a9d8f;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .product-description {
+            color: #586e75;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .product-features li {
+            padding-left: 25px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2a9d8f;
+            font-weight: bold;
+        }
+
+        /* 轮播箭头 */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            border: none;
+            font-size: 24px;
+            color: #2a9d8f;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .carousel-arrow:hover {
+            background-color: #2a9d8f;
+            color: white;
+        }
+
+        .prev-arrow {
+            left: -25px;
+        }
+
+        .next-arrow {
+            right: -25px;
+        }
+
+        /* 轮播指示器 */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator.active {
+            background-color: #2a9d8f;
+        }
+
+        /* 企业文化区 */
+        .culture {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2a9d8f 0%, #21867a 100%);
+            color: white;
+        }
+
+        .culture-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .culture-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .culture-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #f8fffe;
+        }
+
+        .culture-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .culture-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #2a9d8f;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #b8c2cc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #2a9d8f;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b8c2cc;
+            font-size: 14px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                height: auto;
+                padding: 80px 0;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .product-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .product-features {
+                text-align: left;
+                display: inline-block;
+            }
+
+            .prev-arrow {
+                left: 10px;
+            }
+
+            .next-arrow {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .culture {
+                padding: 60px 0;
+            }
+
+            .product-carousel {
+                padding: 60px 0;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">Always Smooth</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#culture">Our Culture</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-<header>
-    <h1>Always Smooth</h1>
-    <p>High-quality household tissue at a smarter price.</p>
-    <button>Shop Coming Soon</button>
-</header>
+    <!-- 英雄区 - https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/product.jpg?raw=true -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Always Smooth<br><span>Quality You Can Trust</span></h1>
+                <p>We are committed to providing premium tissue solutions for modern families, combining sustainable practices with exceptional quality and value. We also offer custom processing services for commercial paper products to meet diverse business needs.</p>
+                <a href="#products" class="btn">Explore Our Products</a>
+            </div>
+            <div class="hero-image">
+                <!-- https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/product%201.jpg?raw=true -->
+                <img src="【你的GitHub图片链接-森林背景主图】" alt="Always Smooth Premium Tissue in forest" class="hero-img">
+            </div>
+        </div>
+    </section>
 
-<section class="section">
-    <div class="value-box">
-        <h2>Better Quality. Smarter Price.</h2>
-        <p>
-        We deliver soft, strong, and reliable tissue products designed for modern families.
-        By working directly with manufacturers, we reduce unnecessary costs — so you get better value without inflated retail pricing.
-        </p>
-    </div>
-</section>
+    <!-- 产品轮播区 - 替换为GitHub上的产品图 -->
+    <section class="product-carousel" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Premium Products</h2>
+                <p>Discover our range of high-quality tissue products designed to meet all your household and commercial needs.</p>
+            </div>
 
-<section class="section" style="background-color:#e8ede7;">
-    <div class="value-box">
-        <h2>Our Promise</h2>
-        <p>
-        ✔ Premium softness<br>
-        ✔ Strong & durable<br>
-        ✔ Family-size value packs<br>
-        ✔ Honest, competitive pricing
-        </p>
-    </div>
-</section>
+            <div class="carousel-container">
+                <button class="carousel-arrow prev-arrow" id="prevBtn">←</button>
+                <button class="carousel-arrow next-arrow" id="nextBtn">→</button>
 
-<footer class="section">
-    <p>© 2026 Always Smooth. All rights reserved.</p>
-</footer>
+                <div class="carousel-wrapper" id="carouselWrapper">
+                    <!-- https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/product%202.jpg?raw=true -->
+                    <div class="product-card">
+                        <div class="product-content">
+                            <div class="product-image">
+                                <img src="【你的GitHub图片链接-白色包装面巾纸】" alt="Facial Tissues" class="product-img">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-category">Everyday Essentials</div>
+                                <h3 class="product-title">Premium Facial Tissues</h3>
+                                <p class="product-description">Our ultra-soft facial tissues are gentle on skin while maintaining superior flexibility. Perfect for daily use, cold seasons, or sensitive skin needs.</p>
+                                <ul class="product-features">
+                                    <li>4-ply thickness for extra comfort</li>
+                                    <li>100% pure wood pulp material</li>
+                                    <li>Unscented & chemical-free</li>
+                                    <li>Family-sized packs available</li>
+                                </ul>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/product%203.jpg?raw=true -->
+                    <div class="product-card">
+                        <div class="product-content">
+                            <div class="product-image">
+                                <img src="【你的GitHub图片链接-橙色包装纸巾】" alt="Virgin Wood Pulp Tissue" class="product-img">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-category">Bathroom Solutions</div>
+                                <h3 class="product-title">Ultra-Soft Toilet Paper</h3>
+                                <p class="product-description">Experience ultimate comfort with our 5-ply toilet paper. Flexible enough for everyday use while remaining gentle on sensitive skin and easily degradable in water.</p>
+                                <ul class="product-features">
+                                    <li>5-ply ultra-soft texture</li>
+                                    <li>Flexible and tear-resistant when wet</li>
+                                    <li>Environmentally friendly packaging</li>
+                                    <li>Easy to decompose, septic tank safe</li>
+                                </ul>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 产品3：蓝色包装纸巾/厕纸 - 替换为GitHub上的居家背景产品图 -->
+                    <div class="product-card">
+                        <div class="product-content">
+                            <div class="product-image">
+                                <img src="【你的GitHub图片链接-居家桌面背景产品图】" alt="Flexible Paper Towels" class="product-img">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-category">Kitchen Essentials</div>
+                                <h3 class="product-title">Flexible Paper Towels</h3>
+                                <p class="product-description">Tackle any mess with our flexible paper towels. Designed for good water absorption and flexibility in the kitchen and around the home.</p>
+                                <ul class="product-features">
+                                    <li>Good water absorption</li>
+                                    <li>Flexible and durable for daily messes</li>
+                                    <li>Perforated for easy tearing</li>
+                                    <li>Recyclable packaging</li>
+                                </ul>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-indicators" id="indicators">
+                    <button class="indicator active" data-index="0"></button>
+                    <button class="indicator" data-index="1"></button>
+                    <button class="indicator" data-index="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 企业文化区 -->
+    <section class="culture" id="culture">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Our Corporate Culture</h2>
+                <p style="color: rgba(255,255,255,0.9);">With over 25 years of experience, we craft the highest quality tissue products from premium pure wood pulp.</p>
+            </div>
+
+            <div class="culture-content">
+                <div class="culture-card">
+                    <div class="culture-icon">🏆</div>
+                    <h3 class="culture-title">Quality First</h3>
+                    <p class="culture-desc">As a reputable paper manufacturing enterprise with over 25 years of history, we never compromise on quality. Every product undergoes rigorous testing to ensure it meets our high standards before reaching your home.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🌱</div>
+                    <h3 class="culture-title">Sustainability</h3>
+                    <p class="culture-desc">We are committed to environmentally responsible practices, using sustainable pure wood pulp materials and reducing our carbon footprint at every stage of production.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🤝</div>
+                    <h3 class="culture-title">Customer Focus</h3>
+                    <p class="culture-desc">Our customers are at the heart of everything we do. We strive to understand your needs and deliver products that exceed your expectations, including custom commercial paper processing services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>Always Smooth is a leading provider of premium tissue products with over 25 years of experience, dedicated to quality, sustainability, and customer satisfaction. We also offer commercial paper processing services.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#culture">Our Culture</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <span>📞</span>
+                        <span>+61 450763631</span>
+                    </div>
+                    <div class="contact-info">
+                        <span>✉️</span>
+                        <span>admin@alwaysmooth.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2026 Always Smooth. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- 轮播功能JS -->
+    <script>
+        const carouselWrapper = document.getElementById('carouselWrapper');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicators = document.querySelectorAll('.indicator');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        let currentIndex = 0;
+        const totalSlides = productCards.length;
+
+        function updateCarousel() {
+            carouselWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }, 5000);
+    </script>
 </body>
 </html>
