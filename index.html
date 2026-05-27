@@ -1,78 +1,187 @@
-{/* FOOTER */}
-<footer className="bg-white py-20">
-  <div className="max-w-[1280px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-5 gap-16">
+import React from "react";
 
-    {/* Brand */}
-    <div className="lg:col-span-2">
-      <h2
-        className="text-[56px] italic text-[#39A8AD]"
-        style={{ fontFamily: "Georgia, serif" }}
-      >
-        Smoothia
-      </h2>
+export default function SmoothiaHomepage() {
+  return (
+    <div className="font-sans text-[#143B5D] bg-[#f8fbfb]">
 
-      <p className="mt-6 text-[#6d7f8d] text-[18px] leading-relaxed max-w-[420px]">
-        Soft as silk, strong in quality.
-        <br />
-        Care for your life, care for our planet.
-      </p>
+      {/* NAVBAR */}
+      <header className="w-full bg-white border-b border-[#edf2f2]">
+        <div className="max-w-[1280px] mx-auto flex items-center justify-between py-6 px-8">
 
-      <div className="flex gap-5 mt-8 text-[24px] text-[#2ca6ad]">
-        <span>○</span>
-        <span>○</span>
-        <span>○</span>
-      </div>
-    </div>
+          {/* Logo */}
+          <div>
+            <h1
+              className="text-[52px] leading-none font-semibold italic text-[#39A8AD]"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
+              Smoothia
+            </h1>
+            <p className="tracking-[4px] text-[11px] text-[#6d7f8d] mt-1">
+              SOFT AS SILK AND LUXURIOUSLY RESILIENT
+            </p>
+          </div>
 
-    {/* Products */}
-    <div>
-      <h4 className="font-bold text-[22px] mb-6 text-[#143B5D]">
-        Products
-      </h4>
+          {/* Nav */}
+          <nav className="hidden lg:flex items-center gap-12 text-[16px] font-medium">
+            <a className="text-[#2ca6ad] border-b-2 border-[#2ca6ad] pb-1">Home</a>
+            <a className="hover:text-[#2ca6ad] transition">Products</a>
+            <a className="hover:text-[#2ca6ad] transition">About Us</a>
+            <a className="hover:text-[#2ca6ad] transition">Wholesale</a>
+            <a className="hover:text-[#2ca6ad] transition">News</a>
+            <a className="hover:text-[#2ca6ad] transition">Contact Us</a>
+          </nav>
 
-      <ul className="space-y-4 text-[#6d7f8d] text-[18px]">
-        <li>Toilet Tissue</li>
-        <li>Facial Tissue</li>
-        <li>Kitchen Towel</li>
-        <li>Bulk & Wholesale</li>
-      </ul>
-    </div>
-
-    {/* Company */}
-    <div>
-      <h4 className="font-bold text-[22px] mb-6 text-[#143B5D]">
-        Company
-      </h4>
-
-      <ul className="space-y-4 text-[#6d7f8d] text-[18px]">
-        <li>About Us</li>
-        <li>Our Factory</li>
-        <li>Quality Assurance</li>
-        <li>Sustainability</li>
-      </ul>
-    </div>
-
-    {/* Contact */}
-    <div>
-      <h4 className="font-bold text-[22px] mb-6 text-[#143B5D]">
-        Contact Us
-      </h4>
-
-      <ul className="space-y-4 text-[#6d7f8d] text-[18px] leading-relaxed">
-        <li>
+          {/* CTA */}
           <a
-            href="mailto:admin@alwaysmooth.com"
-            className="hover:text-[#2ca6ad] transition"
+            href="mailto:admin@alwaysmooth.com?subject=Get%20a%20Quote"
+            className="bg-[#2ca6ad] hover:bg-[#239198] transition text-white rounded-full px-8 py-4 text-[15px] font-semibold shadow-sm inline-block"
           >
-            admin@alwaysmooth.com
+            Get a Quote
           </a>
-        </li>
-      </ul>
+
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-[#f6f9f9]">
+        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center px-8 pt-20 pb-16 gap-12">
+
+          {/* LEFT */}
+          <div>
+            <div className="text-[#2ca6ad] mb-8">
+              NATURAL • SOFT • RESPONSIBLE
+            </div>
+
+            <h2 className="text-[72px] leading-[1.05] font-bold tracking-[-2px]">
+              <span>100% VIRGIN PULP</span>
+              <br />
+              <span className="text-[#2ca6ad]">
+                PREMIUM TISSUE
+                <br />
+                PAPER PRODUCTS
+              </span>
+            </h2>
+
+            <p className="mt-8 text-[24px] text-[#4d6477] max-w-[650px]">
+              Soft and strong, naturally gentle.
+              <br />
+              Quality you can feel, care you can trust.
+            </p>
+
+            <div className="flex gap-6 mt-10">
+              <button className="bg-[#2ca6ad] text-white px-10 py-5 rounded-xl">
+                View Products
+              </button>
+
+              <button className="border border-[#2ca6ad] text-[#2ca6ad] px-10 py-5 rounded-xl">
+                Wholesale Enquiry
+              </button>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div>
+            <img
+              src="https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/Background.png?raw=true"
+              className="rounded-[30px] w-full object-contain"
+              alt=""
+            />
+          </div>
+
+        </div>
+      </section>
+
+      {/* PRODUCTS */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[1280px] mx-auto px-8 text-center">
+
+          <h3 className="text-[54px] font-bold">Our Products</h3>
+          <p className="text-[22px] text-[#65798a] mt-6">
+            Complete paper solutions for homes, businesses and workplaces.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-16">
+
+            {[
+              {
+                title: "Toilet Tissue",
+                desc: "Soft, strong and gentle for everyday comfort.",
+                img: "https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/Toilet%20paper.png?raw=true",
+              },
+              {
+                title: "Facial Tissue",
+                desc: "Soft and delicate, perfect for your skin.",
+                img: "https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/Facial%20tissue.png?raw=true",
+              },
+              {
+                title: "Kitchen Towel",
+                desc: "Strong absorbent, ideal for any kitchen task.",
+                img: "https://github.com/Alwaysmooth/alwaysmooth-official/blob/main/Kitchen%20towel.png?raw=true",
+              },
+              {
+                title: "Bulk & Wholesale",
+                desc: "Competitive prices, reliable quality supply.",
+                img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
+              },
+            ].map((p, i) => (
+              <div key={i} className="border rounded-2xl p-6">
+                <img src={p.img} className="h-[200px] mx-auto object-contain" />
+                <h4 className="text-[28px] font-bold mt-4">{p.title}</h4>
+                <p className="text-[#607687] mt-2">{p.desc}</p>
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER（已完全修复） */}
+      <footer className="bg-white py-20">
+        <div className="max-w-[1280px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-4 gap-16">
+
+          <div>
+            <h2 className="text-[40px] text-[#39A8AD] italic">Smoothia</h2>
+            <p className="mt-4 text-[#6d7f8d]">
+              Soft as silk, strong in quality.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-4">Products</h4>
+            <ul className="space-y-2 text-[#6d7f8d]">
+              <li>Toilet Tissue</li>
+              <li>Facial Tissue</li>
+              <li>Kitchen Towel</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-4">Company</h4>
+            <ul className="space-y-2 text-[#6d7f8d]">
+              <li>About Us</li>
+              <li>Quality</li>
+              <li>Sustainability</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-4">Contact</h4>
+
+            <a
+              href="mailto:admin@alwaysmooth.com"
+              className="text-[#2ca6ad]"
+            >
+              admin@alwaysmooth.com
+            </a>
+          </div>
+
+        </div>
+
+        <div className="text-center mt-12 text-[#8ea0ad] text-[14px]">
+          © 2025 Always Smooth Pty Ltd
+        </div>
+      </footer>
+
     </div>
-
-  </div>
-
-  <div className="text-center text-[#8ea0ad] text-[15px] mt-16">
-    © 2025 Always Smooth Pty Ltd. All Rights Reserved.
-  </div>
-</footer>
+  );
+}
