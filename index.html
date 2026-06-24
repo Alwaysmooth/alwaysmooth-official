@@ -369,10 +369,13 @@
     }
 
     const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot
-  ? ReactDOM.createRoot(rootElement)
-  : ReactDOM.render(<SmoothiaHomepage />, rootElement);
-    root.render(<SmoothiaHomepage />);
+
+if (ReactDOM.createRoot) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<SmoothiaHomepage />);
+} else {
+  ReactDOM.render(<SmoothiaHomepage />, rootElement);
+}
   </script>
 </body>
 </html>
