@@ -368,11 +368,7 @@
       );
     }
 
-    const rootElement = document.getElementById('root');
+const rootElement = document.getElementById('root');
 
-if (ReactDOM.createRoot) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(<SmoothiaHomepage />);
-} else {
-  ReactDOM.render(<SmoothiaHomepage />, rootElement);
-}
+const root = ReactDOM.createRoot(rootElement);
+root.render(<SmoothiaHomepage />);
