@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smoothia - Premium Virgin Pulp Tissue Paper</title>
-  <!-- 替换为澳洲稳定 jsDelivr CDN，彻底抛弃unpkg -->
+  <!-- 澳洲稳定CDN -->
   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.4/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/dist/tailwind.min.js"></script>
 
-  <!-- Tailwind 自定义主题 -->
+  <!-- Tailwind 自定义主题配色 -->
   <script>
     tailwind.config = {
       theme: {
@@ -45,7 +45,7 @@
   <script type="text/babel">
     const { useState } = React;
 
-    // 全局JS崩溃兜底，杜绝纯白屏
+    // JS崩溃兜底，防止纯白屏
     window.onerror = function(error) {
       document.getElementById('root').innerHTML = `
         <div style="padding:4rem 2rem;max-width:800px;margin:0 auto;text-align:center;font-family:sans-serif;">
@@ -71,7 +71,7 @@
         }
       };
 
-            const navLinks = [
+      const navLinks = [
         { name: 'Home', active: true },
         { name: 'Products', active: false },
         { name: 'About Us', active: false },
@@ -80,7 +80,7 @@
         { name: 'Contact Us', active: false },
       ];
 
-      // 恢复你原来GitHub产品原图
+      // 仅保留1次GitHub原图，删除重复占位图覆盖代码
       const productList = [
         {
           title: "Toilet Tissue",
@@ -104,12 +104,8 @@
         },
       ];
 
-      // 恢复首页大图
+      // 首页大图使用你原本的背景图，无重复定义
       const heroImg = "https://raw.githubusercontent.com/Alwaysmooth/alwaysmooth-official/main/Background.png";
-      const featureList = ["100% Virgin Pulp", "Safe & Chemical Free", "Strong & Absorbent", "Sustainable Choice"];
-      const advantageList = ["100% Virgin Pulp", "Soft & Thick", "Safe & Chemical Free", "Strong Absorbent", "Sustainable Choice", "Trusted Quality"];
-
-      const heroImg = "https://via.placeholder.com/1200x800/f6f9f9/2ca6ad?text=Smoothia+Premium+Tissue";
       const featureList = ["100% Virgin Pulp", "Safe & Chemical Free", "Strong & Absorbent", "Sustainable Choice"];
       const advantageList = ["100% Virgin Pulp", "Soft & Thick", "Safe & Chemical Free", "Strong Absorbent", "Sustainable Choice", "Trusted Quality"];
 
