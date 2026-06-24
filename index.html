@@ -12,7 +12,7 @@
 <body>
   <div id="root"></div>
 
-  <script type="text/babel">
+  <script type="text/babel" data-presets="react,env">
     function SmoothiaHomepage() {
       return (
         <div className="font-sans text-[#143B5D] bg-[#f8fbfb]">
@@ -368,7 +368,10 @@
       );
     }
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
+    const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot
+  ? ReactDOM.createRoot(rootElement)
+  : ReactDOM.render(<SmoothiaHomepage />, rootElement);
     root.render(<SmoothiaHomepage />);
   </script>
 </body>
