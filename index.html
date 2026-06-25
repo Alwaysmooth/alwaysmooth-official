@@ -5,16 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smoothia - Premium Virgin Pulp Tissue Paper</title>
   <!-- 预连接图片CDN，加速图片请求 -->
-  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
 
-  <!-- React & 工具库 -->
-  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.4/babel.min.js"></script>
+  <!-- 1. 先加载Tailwind核心JS，再写config配置，解决 tailwind is not defined -->
   <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/dist/tailwind.min.js"></script>
-
-  <!-- 🌿 Sage Green Premium Theme -->
   <script>
     tailwind.config = {
       theme: {
@@ -31,13 +26,15 @@
           fontFamily: {
             georgia: ['Georgia', 'serif'],
           },
-          spacing: {
-            '128': '32rem',
-          },
         },
       }
     }
   </script>
+
+  <!-- React & Babel -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.4/babel.min.js"></script>
 
   <style type="text/tailwindcss">
     @layer utilities {
@@ -52,7 +49,6 @@
       }
       .btn-lux { @apply hover:bg-primaryDark hover:shadow-lg hover:shadow-primary/30 active:scale-[0.97] transition-all duration-300; }
     }
-    /* 图片加载中兜底样式，避免空白白屏 */
     img {
       background-color: #e8f3ee;
     }
@@ -63,20 +59,16 @@
 <div id="root" class="page-fade"></div>
 
 <script type="text/babel">
-const { useState, useEffect } = React;
+const { useState } = React;
 
-window.onerror = function() {
-  document.getElementById('root').innerHTML = `
-    <div style="padding:6rem 2rem;text-align:center;font-family:sans-serif;background:#f3faf6;min-height:100vh;display:flex;flex-col;justify-content:center;">
-      <h1 style="color:#6FBF9E;font-size:48px;font-style:italic;font-family:Georgia;margin-bottom:12px;">Smoothia</h1>
-      <p style="color:#1F3A2E;font-size:18px;">Page temporarily unavailable</p>
-    </div>`;
+// 弱化错误捕获，仅控制台打印，不再替换页面
+window.onerror = function (msg) {
+  console.warn('JS提示：', msg);
 };
 
 function SmoothiaHomepage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [email, setEmail] = useState('');
-  const [imgLoaded, setImgLoaded] = useState({});
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -84,10 +76,6 @@ function SmoothiaHomepage() {
     alert(reg.test(email) ? 'Subscribe success! Thank you.' : 'Invalid email');
     if (reg.test(email)) setEmail('');
   };
-
-  const handleImgLoad = (key) => {
-    setImgLoaded(prev => ({ ...prev, [key]: true }));
-  }
 
   const navLinks = [
     { name: 'Home', active: true },
@@ -100,25 +88,21 @@ function SmoothiaHomepage() {
 
   const productList = [
     {
-      key: "toilet",
       title: "Toilet Tissue",
       desc: "Soft, strong and gentle for everyday comfort.",
       img: "https://raw.githubusercontent.com/Alwaysmooth/alwaysmooth-official/main/Toilet%20paper.png",
     },
     {
-      key: "facial",
       title: "Facial Tissue",
       desc: "Soft and delicate, perfect for your skin.",
       img: "https://raw.githubusercontent.com/Alwaysmooth/alwaysmooth-official/main/Facial%20tissue.png",
     },
     {
-      key: "kitchen",
       title: "Kitchen Towel",
       desc: "Strong absorbent, ideal for any kitchen task.",
       img: "https://raw.githubusercontent.com/Alwaysmooth/alwaysmooth-official/main/Kitchen%20towel.png",
     },
     {
-      key: "bulk",
       title: "Bulk & Wholesale",
       desc: "Competitive prices, reliable quality supply.",
       img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000",
@@ -127,26 +111,16 @@ function SmoothiaHomepage() {
 
   const heroImg = "https://raw.githubusercontent.com/Alwaysmooth/alwaysmooth-official/main/Background.png";
 
-  // 点击页面关闭移动端菜单
-  useEffect(() => {
-    const closeMenu = () => setMobileMenuOpen(false);
-    window.addEventListener('resize', () => window.innerWidth >= 1024 && setMobileMenuOpen(false));
-    return () => window.removeEventListener('resize', closeMenu);
-  }, [])
-
   return (
     <div className="font-sans text-darkBlue bg-bgLight min-h-screen">
-
-      {/* NAV 高端优化：滚动阴影、精致logo区域 */}
+      {/* 导航栏 */}
       <header className="bg-white border-b border-primary/10 sticky top-0 z-50 shadow-sm shadow-primary/5 backdrop-blur-sm">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center px-6 md:px-10 py-7">
-
           <div className="flex flex-col gap-1">
             <h1 className="text-[46px] md:text-[52px] italic font-georgia text-primary tracking-wide">Smoothia</h1>
             <p className="text-[11px] tracking-[5px] text-textGray uppercase font-medium">Soft As Silk And Luxuriously Resilient</p>
           </div>
 
-          {/* PC导航 */}
           <nav className="hidden lg:flex gap-10 xl:gap-14 items-center text-[16px] font-medium">
             {navLinks.map((i, idx) => (
               <a key={idx} className={i.active ? "nav-link-active" : "nav-link"}>
@@ -155,13 +129,11 @@ function SmoothiaHomepage() {
             ))}
           </nav>
 
-          {/* 移动端汉堡按钮 */}
           <button className="lg:hidden text-3xl text-darkBlue w-10 h-10 flex items-center justify-center" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? '✕' : '☰'}
           </button>
         </div>
 
-        {/* 移动端下拉菜单（新增完整弹窗面板） */}
         {mobileMenuOpen && (
           <div className="lg:hidden absolute w-full bg-white border-t border-primary/10 shadow-xl py-6 px-8 flex flex-col gap-6 text-lg">
             {navLinks.map((i, idx) => (
@@ -173,7 +145,7 @@ function SmoothiaHomepage() {
         )}
       </header>
 
-      {/* HERO 高级渐变背景、层级优化、图片加载优化 */}
+      {/* Hero首屏 */}
       <section className="bg-gradient-to-br from-[#f4fbf7] via-[#edf8f2] to-[#e4f3eb] overflow-hidden">
         <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-14 xl:gap-20 px-6 md:px-10 py-16 md:py-28 items-center">
           <div className="order-2 lg:order-1">
@@ -181,32 +153,27 @@ function SmoothiaHomepage() {
               <span className="text-darkBlue block mb-2">100% VIRGIN PULP</span>
               <span className="text-primary">PREMIUM TISSUE PAPER</span>
             </h2>
-
             <p className="text-[18px] md:text-[22px] mt-8 text-textGray max-w-xl leading-relaxed">
               Ultra soft & naturally strong, crafted with pure virgin pulp.<br />
               Luxurious comfort you can touch and trust.
             </p>
-
             <button className="mt-10 bg-primary text-white px-10 py-5 rounded-xl text-lg font-medium btn-lux shadow-md shadow-primary/20">
               Explore Products
             </button>
           </div>
-
           <div className="order-1 lg:order-2">
             <img
               src={heroImg}
               alt="Smoothia premium tissue hero"
-              className={`rounded-3xl shadow-2xl shadow-primary/15 w-full object-contain img-fade-in ${imgLoaded.hero ? 'opacity-100' : 'opacity-40'}`}
+              className="rounded-3xl shadow-2xl shadow-primary/15 w-full object-contain img-fade-in"
               loading="lazy"
               decoding="async"
-              crossOrigin="anonymous"
-              onLoad={() => handleImgLoaded('hero')}
             />
           </div>
         </div>
       </section>
 
-      {/* PRODUCTS 轻奢卡片排版，统一图片懒加载加速 */}
+      {/* 产品区域 */}
       <section className="bg-white py-20 md:py-32">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="text-center mb-16 md:mb-24">
@@ -214,18 +181,15 @@ function SmoothiaHomepage() {
             <div className="w-20 h-[3px] bg-primary mx-auto mt-5 rounded-full"></div>
             <p className="text-textGray mt-5 text-lg max-w-2xl mx-auto">Carefully crafted tissue solutions for home, kitchen and commercial wholesale</p>
           </div>
-
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10">
-            {productList.map((p) => (
-              <div key={p.key} className="bg-gradient-to-b from-cardBg to-white rounded-2xl p-7 border border-primary/5 card-shadow">
+            {productList.map((p, i) => (
+              <div key={i} className="bg-gradient-to-b from-cardBg to-white rounded-2xl p-7 border border-primary/5 card-shadow">
                 <img
                   src={p.img}
                   alt={p.title}
-                  className={`h-[210px] mx-auto object-contain w-full img-fade-in ${imgLoaded[p.key] ? 'opacity-100' : 'opacity-30'}`}
+                  className="h-[210px] mx-auto object-contain w-full img-fade-in"
                   loading="lazy"
                   decoding="async"
-                  crossOrigin="anonymous"
-                  onLoad={() => handleImgLoaded(p.key)}
                 />
                 <h4 className="text-2xl font-bold mt-7 text-darkBlue">{p.title}</h4>
                 <p className="text-textGray mt-3 leading-relaxed">{p.desc}</p>
@@ -235,14 +199,13 @@ function SmoothiaHomepage() {
         </div>
       </section>
 
-      {/* FOOTER 简约高级底部 */}
+      {/* 页脚 */}
       <footer className="bg-bgLight py-16 border-t border-primary/10">
         <div className="max-w-[1400px] mx-auto px-6 text-center">
           <h2 className="text-3xl italic font-georgia text-primary mb-4">Smoothia</h2>
           <p className="text-textGray">© 2026 Smoothia. All Rights Reserved.</p>
         </div>
       </footer>
-
     </div>
   );
 }
